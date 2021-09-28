@@ -25,7 +25,7 @@ os.chdir(dirHome)
 ################################################################################
 # provide county name
 # brevard4Dfs0 | indianRiver4Dfs0 | martin4Dfs0 | okeechobee4Dfs0 | stLucie4Dfs0 
-county = "brevard4Dfs0"
+county = "stLucie4Dfs0"
 ################################################################################
 
 
@@ -41,6 +41,11 @@ df = []
 items = []
 for ii in range(1,dat.shape[1]):
     df.append(dat.iloc[:,ii].to_numpy())
+    
+    ###########################################################
+    # make final decision here for EUMUnit *** 
+    ###########################################################
+
     items.append(ItemInfo(dat.columns[ii], EUMType.Water_Volume, 
                             EUMUnit.feet_pow_3, 
                                 data_value_type= DataValueType.MeanStepBackward))

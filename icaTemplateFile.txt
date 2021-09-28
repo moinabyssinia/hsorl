@@ -65,7 +65,7 @@
 			WellXposSIWS = var_xPos
 			WellYposSIWS = var_yPos
 			ScreenTopDepthSIWS = var_top
-			CapacitySIWS = var_withdrawal
+			CapacitySIWS = 0
 			ThresholdDepthSIWS = var_depth
 			ScreenBottomDepthSIWS = var_bottom
 			ScreenTopDepthSWS = 0
@@ -80,7 +80,7 @@
 			[TIME_SERIES_FILE]
 				Touched = 1
 				IsDataUsedInSetup = 0
-				FILE_NAME = ||
+				FILE_NAME = |..\..\..\..\irrigation-module\01-data\01-withdrawalsDFS0\var_county|
 				ITEM_COUNT = 1
 				ITEM_NUMBERS = 1
 			EndSect  // TIME_SERIES_FILE

@@ -12,7 +12,7 @@ import os
 import pandas as pd
 
 dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
-        "irrigation-module\\00-scripts"
+                "ECFTX\\extractedWellData\\07-staticFile"
 
 dirOut = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
         "irrigation-module\\00-scripts\\sampleICAFiles"
@@ -20,31 +20,38 @@ dirOut = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents
 dirCombined = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
         "irrigation-module\\00-scripts\\combinedICAFiles"
 
+dirDfs0 = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
+        "irrigation-module\\01-data\\01-withdrawalsDFS0"
+
 os.chdir(dirHome)
 
-dat = pd.read_csv("sampleICAPlaceHolders.csv")
+dat = pd.read_csv("staticWellFile.csv")
 
+print(dat)
+
+codeID = 1
 for ii in range(len(dat)):
     os.chdir(dirHome)
 
-    print(ii)
+    print(dat['wellID'][ii])
 
-    saveName = "ica{}.txt".format(ii)
+    saveName = "ica_{}.txt".format(dat['wellID'][ii])
 
     f = open('icaTemplateFile.txt', 'r')
     fileData = f.read()
     f.close()
 
-    newData = fileData.replace('var_areaName', "'{}'".format(repr(dat['var_areaName'][ii])))
-    newData = newData.replace('var_areaCodeId', "'{}'".format(repr(dat['var_areaCodeId'][ii])))
-    newData = newData.replace('var_areaCode', repr(dat['var_areaCode'][ii]))
-    newData = newData.replace('var_sourceType', repr(dat['var_sourceType'][ii]))
-    newData = newData.replace('var_xPos', repr(dat['var_xPos'][ii]))
-    newData = newData.replace('var_yPos', repr(dat['var_yPos'][ii]))
-    newData = newData.replace('var_top', repr(dat['var_top'][ii]))
-    newData = newData.replace('var_withdrawal', repr(dat['var_withdrawal'][ii]))
-    newData = newData.replace('var_depth', repr(dat['var_depth'][ii]))
-    newData = newData.replace('var_bottom', repr(dat['var_bottom'][ii]))
+    newData = fileData.replace('var_areaName', "'{}'".format(dat['wellID'][ii]))
+    newData = newData.replace('var_areaCodeId', "'{}'".format(repr(codeID)))
+    newData = newData.replace('var_areaCode', repr(codeID))
+    newData = newData.replace('var_sourceType', '2') # single well
+    newData = newData.replace('var_xPos', repr(dat['x'][ii]))
+    newData = newData.replace('var_yPos', repr(dat['y'][ii]))
+    newData = newData.replace('var_top', repr(dat['top'][ii]))
+    newData = newData.replace('var_county', dat['dfs0File'][ii])
+    newData = newData.replace('var_depth', repr(dat['depth'][ii]))
+    newData = newData.replace('var_bottom', repr(dat['bottom'][ii]))
+    codeID = codeID + 1
 
 
     os.chdir(dirOut)

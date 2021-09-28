@@ -1,0 +1,92 @@
+
+[CommandArea]
+	Touched = 1
+	IsDataUsedInSetup = 1
+	AreaName = '495_678_SF_56-03015-W_230622'
+	AreaCodeID = '3837'
+	AreaCode = 3837
+	[INDIRECT_APPLICATION_AREA]
+	Touched = 1
+	IsDataUsedInSetup = 0
+	Type = 0
+	ShapeAxisUnit = 1000
+	ShapeGapFillName = ''
+	FixedValue = 0
+	InterpMethod = 2
+	SearchRadius = 1000
+	ShowGridData = 1
+	ShowShapeData = 1
+	ShapeItemUnit = 99013
+	[DFS_2D_DATA_FILE]
+		Touched = 1
+		IsDataUsedInSetup = 0
+		FILE_NAME = ||
+		ITEM_COUNT = 1
+		ITEM_NUMBERS = 1
+	EndSect  // DFS_2D_DATA_FILE
+
+	[SHAPE_FILE]
+		Touched = 1
+		IsDataUsedInSetup = 0
+		FILE_NAME = ||
+		ITEM_COUNT = 1
+		ITEM_NUMBERS = ''
+	EndSect  // SHAPE_FILE
+
+	[XYZ_FILE]
+		Touched = 1
+		IsDataUsedInSetup = 0
+		FILE_NAME = ||
+	EndSect  // XYZ_FILE
+
+	EndSect  // INDIRECT_APPLICATION_AREA
+
+	[Sources]
+		Touched = 1
+		IsDataUsedInSetup = 1
+		MzSEPfsListItemCount = 1
+		NumberOfSources = 1
+		[Source1]
+			Touched = 1
+			IsDataUsedInSetup = 1
+			SourceTypeCode = 2 
+			WaterApplication = 1
+			DirectApplication = 1
+			RiverNameRS = ''
+			UpstreamChainageRS = 0
+			DownstreamChainageRS = 0
+			CapacityRS = 0
+			UseThresholdDischargeRateRS = 1
+			ThresholdDischargeRateStopRS = 0
+			ThresholdDischargeRateRestartRS = 0
+			UseThresholdStageRS = 0
+			ThresholdStageStopRS = 0
+			ThresholdStageRestartRS = 0
+			WellXposSIWS = 565615.75
+			WellYposSIWS = 3032017
+			ScreenTopDepthSIWS = 19.9669
+			CapacitySIWS = 0
+			ThresholdDepthSIWS = 128.5558
+			ScreenBottomDepthSIWS = -108.5889
+			ScreenTopDepthSWS = 0
+			ThresholdDepthSWS = 0
+			CapacitySWS = 0
+			ScreenBottomDepthSWS = 0
+			CapacityES = 0
+			RS_6 = 0
+			RS_7 = 0
+			IrrigationLicenseIncluded = 0
+			TYPE = 2
+			[TIME_SERIES_FILE]
+				Touched = 1
+				IsDataUsedInSetup = 0
+				FILE_NAME = |..\..\..\..\irrigation-module\01-data\01-withdrawalsDFS0\ST.LUCIE.dfs0|
+				ITEM_COUNT = 1
+				ITEM_NUMBERS = 1
+			EndSect  // TIME_SERIES_FILE
+
+		EndSect  // Source1
+
+	EndSect  // Sources
+
+EndSect  // CommandArea
