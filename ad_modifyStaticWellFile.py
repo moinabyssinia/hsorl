@@ -21,7 +21,17 @@ dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
 
 os.chdir(dirHome)
 
-dat = pd.read_csv("allWells_watershed.csv")
+dat = pd.read_csv("staticWellFileCleaned.csv")
 
-print(dat['watershed'].unique())
+dat.drop(['Unnamed: 0','dfs0File'], axis = 1, inplace = True)
 
+dat.columns = ['wellID', 'x', 'y', 'level', 'wellField', 'top', 'bottom', 'depth',
+       'fraction', 'dfs0Item', 'dfs0File']
+
+print(dat)
+
+dat['dfs0File'] = dat['dfs0File'] + ".dfs0"
+
+print(dat)
+
+dat.to_csv('staticWellFileCleaned_ws_ICA.csv')
