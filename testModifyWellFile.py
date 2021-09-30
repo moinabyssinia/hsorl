@@ -19,12 +19,18 @@ os.chdir(dirHome)
 
 dat = pd.read_csv("staticWellFileCleaned_ws_ICA.csv")
 
-print(dat.columns)
+# remove the dfs0 extension from the dfs0File column
 
-dat = dat[['wellID', 'x', 'y', 'level', 'depth', 'wellField', 'top', 'bottom', 'dfs0File',
-       'dfs0Item', 'fraction']]
+removeExt = lambda x: x.split('.dfs0')[0]
+dat['dfs0File'] = pd.DataFrame(list(map(removeExt, dat['dfs0File'])))
+
+print(dat['dfs0File'])
+
+
+dat = dat[['wellID', 'x', 'y', 'level', 'depth', 'wellField', 'top', 'bottom', 'fraction', 
+           'dfs0File', 'dfs0Item',]]
 
 # dat.to_csv('staticWellFileCleaned_ws_ICA_columReorganized.csv')
 
-dat.to_csv('staticWellFileCleaned_ws_ICA_columReorganized.csv', 
+dat.to_csv('staticWellFileCleaned_ws_ICA_columReorganized_v4.csv', 
             sep='\t', index = False,  header=False)

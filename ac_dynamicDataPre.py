@@ -37,7 +37,7 @@ for ica in icaList:
     dat['year'] = pd.DataFrame(list(map(getStr, dat['year'])))
     dat['date'] = dat['mon'] + "-" + dat['year']
 
-    print(dat['date'])
+#     print(dat['date'])
 
     # print(dat[['monYear', 'rowColPermit', 'withdrawal']])
 
@@ -57,10 +57,13 @@ for ica in icaList:
         # merge to rcpUnique
         dfs0File = pd.merge(dfs0File, newDf, on="date", how="left")
 
-    print(dfs0File)
+#     print(dfs0File)
+    
+    # change dat 'date' to date format
+    dfs0File['date'] = pd.to_datetime(dfs0File['date'])
     
     # sort based on date
-    dfs0File.sort_values(by = "date", key = pd.to_datetime)
+    dfs0File = dfs0File.sort_values(by = ["date"])
     
     # save ica dfs0 ready csv
     os.chdir(dirOut)
