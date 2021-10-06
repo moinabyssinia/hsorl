@@ -1,6 +1,7 @@
 """
 Created on Wed Aug 25 18:29:00 2021
 modified on Wed Sep 29 18:07:00 2021
+modified on Wed Oct 06 14:49:00 2021
 
 this program converts the csvs to a format that 
 can be used in the dfs0 format
@@ -12,9 +13,9 @@ import os
 import pandas as pd
 
 dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
-        "ECFTX\\extractedWellData\\07-staticFile\\wellsByICA"
+        "ECFTX\\extractedWellData\\07-staticFile\\wellsByWS"
 dirOut = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
-        "ECFTX\\extractedWellData\\07-staticFile\\wellsByICA4Dfs0"
+        "ECFTX\\extractedWellData\\07-staticFile\\wellsByWS4Dfs0"
 
 
 os.chdir(dirHome)
@@ -31,6 +32,9 @@ for ica in icaList:
     
     dat['mon'] = dat['mon'].replace("AVE", "DEC")
     
+    # convert cubic feet/day to gallon/day
+    dat['withdrawal_gal'] = dat['withdrawal']/7.48052
+        
         
     # modify month and year format
     getStr = lambda x : str(int(x))
@@ -50,7 +54,7 @@ for ica in icaList:
 
     for rcp in rcpUnique:
         df = dat[dat['rowColPermit'] == rcp]
-        newDf = df[['date', 'withdrawal']]
+        newDf = df[['date', 'withdrawal_gal']]
         newDf.columns = ['date', rcp]
         # print(newDf)
 

@@ -47,10 +47,11 @@ for ws in wsList:
         
         ###########################################################
         # make final decision here for EUMUnit *** 
+        # for now we are using million gallons and water volume
         ###########################################################
 
         items.append(ItemInfo(dat.columns[ii], EUMType.Water_Volume, 
-                                EUMUnit.feet_pow_3, 
+                                EUMUnit.milligallon, 
                                     data_value_type= DataValueType.MeanStepBackward))
 
     # generate monthly time from 12/2003 to 12/2014

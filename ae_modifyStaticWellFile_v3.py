@@ -14,26 +14,31 @@ import numpy as np
 import pandas as pd 
 
 dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
-        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile"
+        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile\\staticWellFile_WS"
 
 dirDfs0 = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
-        "ECFTX\\extractedWellData\\07-staticFile\\wellsByICA4Dfs0"
+        "ECFTX\\extractedWellData\\07-staticFile\\wellsByWS4Dfs0_watervolume"
 
 
 os.chdir(dirHome)
 
-dat = pd.read_csv("staticWellFileCleaned_ws_ICA.csv")
+dat = pd.read_csv("staticWellFileByWS.csv")
 
 # remove the dfs0 extension from the dfs0File column
 
 removeExt = lambda x: x.split('.dfs0')[0]
 dat['dfs0File'] = pd.DataFrame(list(map(removeExt, dat['dfs0File'])))
 
-print(dat)
 
 
 dat = dat[['wellID', 'x', 'y', 'level', 'depth', 'wellField', 'top', 'bottom', 'fraction', 
-           'dfs0File', 'dfs0Item',]]
+           'watershed', 'dfs0Item']]
+
+dat.columns = ['wellID', 'x', 'y', 'level', 'depth', 'wellField', 'top', 'bottom', 'fraction', 
+           'dfs0File', 'dfs0Item',]
+
+print(dat)
+
 
 os.chdir(dirDfs0)
 
@@ -55,9 +60,10 @@ for well in range(len(dat)):
         newItemNum = list(df.columns).index(currentWell)
 
         dat['dfs0Item'][well] = newItemNum
-        
+
+print(dat)
         
 os.chdir(dirHome)
 
-dat.to_csv('staticWellFileCleaned_ws_ICA_dfs0Numbered_v8.csv', 
+dat.to_csv('staticWellFileByWS_4WellEditor.csv', 
             sep='\t', index = False,  header=False)

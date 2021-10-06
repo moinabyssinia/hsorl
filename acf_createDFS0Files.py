@@ -1,6 +1,6 @@
 """  
-Created on Thu Sep 30 18:15:00 2021
-modified on Thu Oct 06 17:56:00 2021
+Created on Thu Sep 23 16:13:00 2021
+modified on Wed Oct 06 18:03:00 2021
 
 prepare dfs0 withdrawal files with the 
 units, types and datatypes included
@@ -17,11 +17,17 @@ from mikeio.eum import ItemInfo, EUMType, EUMUnit
 import pandas as pd 
 from mikeio import Dfs0
 
-dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\MIKE_Modeling_Group - Documents\\"\
-        "ECFTX\\extractedWellData\\07-staticFile\\wellsByWS4Dfs0_ExternalSource"
+dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
+    "MIKE_Modeling_Group - Documents\\ECFTX\\"\
+            "extractedWellData\\07-staticFile\\wellsByWS4Dfs0_watervolume"
+
+dirOut = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
+    "MIKE_Modeling_Group - Documents\\ECFTX\\"\
+            "extractedWellData\\07-staticFile\\wellsByWS_Dfs0_watervolume"
 
 
 os.chdir(dirHome)
+
 
 # loop through watersheds
 wsList = os.listdir()
@@ -50,7 +56,7 @@ for ws in wsList:
         ###########################################################
 
         items.append(ItemInfo(dat.columns[ii], EUMType.Water_Volume, 
-                                EUMUnit.feet_pow_3, 
+                                EUMUnit.milligallon, 
                                     data_value_type= DataValueType.MeanStepBackward))
 
     # generate monthly time from 12/2003 to 12/2014
@@ -66,9 +72,12 @@ for ws in wsList:
     print(ds)
 
 
-    # write the dfs0 file    
+    # write the dfs0 file
+    
+    os.chdir(dirOut)
+    
     dfs = Dfs0()
 
     dfs.write(filename= ws.split(".csv")[0] + ".dfs0", 
             data=ds,
-            title="Irrigation: External Source")
+            title="monthly_withdrawal_volume_mg")
