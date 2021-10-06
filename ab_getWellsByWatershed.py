@@ -12,10 +12,10 @@ import os
 import pandas as pd
 
 dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
-        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile"
+        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile\\staticWellFile_WS"
 dirOut = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
         "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\"\
-                "07-staticFile\\wellsByICA"
+                "07-staticFile\\wellsByWS"
 
 
 os.chdir(dirHome)

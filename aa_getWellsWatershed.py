@@ -16,13 +16,13 @@ import os
 import pandas as pd
 
 dirHome = "C:\\Users\\mtadesse\\Hazen and Sawyer\\"\
-        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile"
+        "MIKE_Modeling_Group - Documents\\ECFTX\\extractedWellData\\07-staticFile\\staticWellFile_WS"
 
 os.chdir(dirHome)
 
 # read files
 allWells = pd.read_csv("ecftx_tr_20190329_GLRSTA_Counties_allWells.csv")
-staticFile = pd.read_csv("staticWellFileCleaned.csv")
+staticFile = pd.read_csv("staticWellFileByWS.csv")
 
 # allocate a watershed column
 allWells['watershed'] = 'nan'
